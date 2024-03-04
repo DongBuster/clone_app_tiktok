@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "70897694595",
+    "firebase_url": "https://cloneapptiktok-4c440-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "cloneapptiktok-4c440",
+    "storage_bucket": "cloneapptiktok-4c440.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70897694595:android:a5058e4d999adf1f23e8b6",
+        "android_client_info": {
+          "package_name": "com.example.clone_app_tiktok"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70897694595-1lofkjb8f7fhdaon6au2qo448st1m4uh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhc3QrmJg9jhM62wP0WFtzrmiDK0iP4X8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70897694595-1lofkjb8f7fhdaon6au2qo448st1m4uh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "70897694595-534appd3h660hjgrool1ib6rucbmn1a4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterApplication1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
