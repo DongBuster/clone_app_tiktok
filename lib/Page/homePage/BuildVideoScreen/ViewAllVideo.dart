@@ -79,12 +79,6 @@ class _ViewAllVideoState extends State<ViewAllVideo> {
           },
         );
       },
-      // children: [
-      //   Video(controller: VideoPlayerController.asset("assets/video/ok.mp4")),
-      //   Video(controller: VideoPlayerController.asset("assets/video/2.mp4")),
-      //   Video(controller: VideoPlayerController.asset("assets/video/3.mp4")),
-      //   Video(controller: VideoPlayerController.asset("assets/video/4.mp4")),
-      // ],
     );
   }
 }

@@ -74,7 +74,6 @@ class _offerCustomerState extends State<offerCustomer> {
                       saleBanner('assets/img/ip.jpg'),
                       saleBanner('assets/img/ip.jpg'),
                       saleBanner('assets/img/ip.jpg'),
-                      saleBanner('assets/img/ip.jpg'),
                     ],
                   ),
                 )

@@ -119,7 +119,6 @@ class _flashSaleState extends State<flashSale> {
               flashSaleBanner('assets/img/airpod.png', 40, '25.000', '50.000'),
               flashSaleBanner('assets/img/airpod.png', 30, '25.000', '30.000'),
               flashSaleBanner('assets/img/airpod.png', 10, '25.000', '60.000'),
-              flashSaleBanner('assets/img/airpod.png', 55, '25.000', '90.000'),
             ],
           )),
         ],
@@ -135,8 +134,8 @@ Widget flashSaleBanner(
     children: [
       Container(
           alignment: Alignment.bottomLeft,
-          width: 84,
-          height: 90,
+          width: 85,
+          height: 88,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(image: AssetImage(url), fit: BoxFit.fill)),

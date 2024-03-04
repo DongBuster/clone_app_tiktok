@@ -17,7 +17,7 @@ class _VideoDescriptionState extends State<VideoDescription> {
       child: TextContentVideo(
         title: 'Saleall',
         textDescription:
-            'Một người vợ đảm đang bên China nấu ăn cho chồng. Trông thật ngon kk kk k k k k k kk  kkkkk  kk  kk #China #Funny',
+            'Một người vợ đảm đang bên China nấu ăn cho chồng. Trông thật ngon lành đến lạ thường, chắc không đơn giản như vậy ...  #China #Funny',
         nameMusic: '♫ Saleall Âm thanh Gốc',
       ),
     );

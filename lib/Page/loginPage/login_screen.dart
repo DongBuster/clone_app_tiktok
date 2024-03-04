@@ -3,6 +3,7 @@ import 'package:clone_app_tiktok/Route/App_Route.dart';
 import 'package:clone_app_tiktok/provider/GlobalState.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../Animations/AnimationsPage.dart';
@@ -42,9 +43,7 @@ class _loginScreenState extends State<loginScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(
-                  width: 50,
-                ),
+                const Gap(50),
                 GestureDetector(
                   onTap: null,
                   child: Text(
@@ -78,26 +77,33 @@ class _loginScreenState extends State<loginScreen> {
                   height: 70,
                   color: const Color(0xff9c9c9c),
                 ),
-                const SizedBox(height: 20),
+                const Gap(20),
                 const Text('Đăng kí tài khoản', style: TextStyle(fontSize: 16)),
-                const SizedBox(height: 20),
+                const Gap(20),
                 ElevatedButton(
-                    onPressed: () {
-                      ShowModalBottomSheet(context);
-                    },
-                    style: const ButtonStyle(
-                        minimumSize: MaterialStatePropertyAll(Size(220, 45)),
-                        backgroundColor:
-                            MaterialStatePropertyAll(Color(0xfffe2c55))),
-                    child: const Text('Đăng kí',
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500)))
+                  onPressed: () {
+                    ShowModalBottomSheet(context);
+                  },
+                  style: const ButtonStyle(
+                    minimumSize: MaterialStatePropertyAll(
+                      Size(220, 45),
+                    ),
+                    backgroundColor: MaterialStatePropertyAll(
+                      Color(0xfffe2c55),
+                    ),
+                  ),
+                  child: const Text(
+                    'Đăng kí',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
               ],
             ),
           ),
-          const SizedBox(height: 62),
+          const Gap(62),
         ],
       ),
     );
@@ -139,7 +145,7 @@ Widget LoginWith(String logoImage, String loginWith) {
           loginWith,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         ),
-        const SizedBox(width: 30)
+        const Gap(30)
       ],
     ),
   );
@@ -159,162 +165,173 @@ class _registerAccoutState extends State<registerAccout> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: mq.height - 20,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // header
-            Padding(
-              padding: const EdgeInsets.only(top: 15, left: 5, right: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.close, size: 25)),
-                  isEnabled
-                      ? const Text('Đăng kí TikTok',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold))
-                      : const SizedBox(),
-                  IconButton(
-                      onPressed: null,
-                      icon: SvgPicture.asset(
-                        'assets/svg/question.svg',
-                        width: 24,
-                        height: 24,
-                        color: const Color(0xff9c9c9c),
-                      )),
-                ],
-              ),
-            ),
-            //body
-            Expanded(
-              child: NotificationListener<ScrollNotification>(
-                onNotification: (notificationScroll) {
-                  setState(() {
-                    isEnabled = notificationScroll.metrics.pixels > 61;
-                  });
-                  return false;
-                },
-                child: SingleChildScrollView(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 30),
-                        const Text('Đăng kí TikTok',
-                            style: TextStyle(
-                                fontSize: 27, fontWeight: FontWeight.bold)),
-                        const SizedBox(height: 15),
-                        const Text(
-                            'Quản lý tài khoản, kiểm tra thông báo, bình luận',
-                            style: TextStyle(
-                                fontSize: 16, color: Color(0xff9c9c9c))),
-                        const Text('trên các video, v.v.',
-                            style: TextStyle(
-                                fontSize: 16, color: Color(0xff9c9c9c))),
-                        const SizedBox(height: 30),
-                        GestureDetector(
-                          onTap: () async {
-                            await loginWithGoogle.signInWithGoogle();
-
-                            //  if(mounted) {
-                            setState(() {
-                              Provider.of<GlobalState>(context, listen: false)
-                                  .setIsLogin(true);
-                              print(
-                                  'islogin: ${Provider.of<GlobalState>(context, listen: false).isLogin}');
-                              print('nameRoute:  ${AppRoute.router.location}');
-                              print(
-                                  'index:  ${context.read<GlobalState>().indexPage}');
-                              Navigator.pop(context);
-
-                              context.go('/home');
-                            });
-                            // } else {
-                            //   ScaffoldMessenger.of(context).showSnackBar(
-                            //     const SnackBar(
-                            //       content: Text('Login failed'),
-                            //     ),
-                            //   );
-                            // }
-                          },
-                          child: LoginWith('assets/img/login/googleLogo.png',
-                              'Tiếp tục với Google'),
-                        ),
-                        const SizedBox(height: 15),
-                        LoginWith('assets/img/login/personLogo.png',
-                            'Số điện thoại / Email / Tiktok ID'),
-                        const SizedBox(height: 15),
-                        LoginWith('assets/img/login/facebookLogo.png',
-                            'Tiếp tục Facebook'),
-                        const SizedBox(height: 15),
-                        LoginWith('assets/img/login/intargramLogo.png',
-                            'Tiếp tục với Intargram'),
-                        const SizedBox(height: 15),
-                        LoginWith('assets/img/login/twitterLogo.png',
-                            'Tiếp tục với Twitter'),
-                        const SizedBox(height: 15),
-                        LoginWith('assets/img/login/lineLogo.png',
-                            'Tiếp tục với LINE'),
-                        const SizedBox(height: 30),
-                      ]),
-                ),
-              ),
-            ),
-            // footer
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+      height: mq.height - 20,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // header
+          Padding(
+            padding: const EdgeInsets.only(top: 15, left: 5, right: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 20),
-                  constraints: const BoxConstraints(maxWidth: 332),
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: const TextSpan(
-                      text: 'Bằng cách tiếp tục, bạn đồng ý với  ',
-                      style: TextStyle(fontSize: 14, color: Colors.black38),
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: 'Điều khoản Dịch vụ ',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        TextSpan(
-                            text:
-                                'của chúng tôi và thừa nhận rằng bạn đã đọc '),
-                        TextSpan(
-                            text: 'Chính sách Quyền riêng tư ',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        TextSpan(
-                            text:
-                                'để tìm hiểu cách chúng tôi thu nhập, sử dụng và chia sẻ dữ liệu của bạn.'),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 70,
-                  color: const Color(0xfff1f1f1),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Bạn không có tài khoản?',
-                          style: TextStyle(fontSize: 18)),
-                      Text(
-                        ' Đăng kí',
+                IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.close, size: 25)),
+                isEnabled
+                    ? const Text('Đăng kí TikTok',
                         style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.redAccent),
+                            fontSize: 18, fontWeight: FontWeight.bold))
+                    : const SizedBox(),
+                IconButton(
+                    onPressed: null,
+                    icon: SvgPicture.asset(
+                      'assets/svg/question.svg',
+                      width: 24,
+                      height: 24,
+                      color: const Color(0xff9c9c9c),
+                    )),
+              ],
+            ),
+          ),
+          //body
+          Expanded(
+            child: NotificationListener<ScrollNotification>(
+              onNotification: (notificationScroll) {
+                setState(() {
+                  isEnabled = notificationScroll.metrics.pixels > 61;
+                });
+                return false;
+              },
+              child: SingleChildScrollView(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Gap(30),
+                      const Text(
+                        'Đăng kí TikTok',
+                        style: TextStyle(
+                            fontSize: 27, fontWeight: FontWeight.bold),
                       ),
+                      const Gap(15),
+                      const Text(
+                        'Quản lý tài khoản, kiểm tra thông báo, bình luận',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xff9c9c9c),
+                        ),
+                      ),
+                      const Text(
+                        'trên các video, v.v.',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xff9c9c9c),
+                        ),
+                      ),
+                      const Gap(30),
+                      GestureDetector(
+                        onTap: () async {
+                          await loginWithGoogle.signInWithGoogle();
+
+                          if (context.mounted) {
+                            Provider.of<GlobalState>(context, listen: false)
+                                .setIsLogin(true);
+                            // print(
+                            //     'islogin: ${Provider.of<GlobalState>(context, listen: false).isLogin}');
+                            // print('nameRoute:  ${AppRoute.router.location}');
+                            // print(
+                            //     'index:  ${context.read<GlobalState>().indexPage}');
+                            Navigator.pop(context);
+
+                            context.go('/home');
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Login failed'),
+                              ),
+                            );
+                          }
+                        },
+                        child: LoginWith('assets/img/login/googleLogo.png',
+                            'Tiếp tục với Google'),
+                      ),
+                      const Gap(15),
+                      LoginWith('assets/img/login/personLogo.png',
+                          'Số điện thoại / Email / Tiktok ID'),
+                      const Gap(15),
+                      LoginWith('assets/img/login/facebookLogo.png',
+                          'Tiếp tục Facebook'),
+                      const Gap(15),
+                      LoginWith('assets/img/login/intargramLogo.png',
+                          'Tiếp tục với Intargram'),
+                      const Gap(15),
+                      LoginWith('assets/img/login/twitterLogo.png',
+                          'Tiếp tục với Twitter'),
+                      const Gap(15),
+                      LoginWith(
+                          'assets/img/login/lineLogo.png', 'Tiếp tục với LINE'),
+                      const Gap(30),
+                    ]),
+              ),
+            ),
+          ),
+          // footer
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Gap(15),
+              Container(
+                margin: const EdgeInsets.only(bottom: 20),
+                constraints: const BoxConstraints(maxWidth: 332),
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: const TextSpan(
+                    text: 'Bằng cách tiếp tục, bạn đồng ý với  ',
+                    style: TextStyle(fontSize: 14, color: Colors.black38),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'Điều khoản Dịch vụ ',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                          text: 'của chúng tôi và thừa nhận rằng bạn đã đọc '),
+                      TextSpan(
+                        text: 'Chính sách Quyền riêng tư ',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                          text:
+                              'để tìm hiểu cách chúng tôi thu nhập, sử dụng và chia sẻ dữ liệu của bạn.'),
                     ],
                   ),
-                )
-              ],
-            )
-          ],
-        ));
+                ),
+              ),
+              Container(
+                height: 70,
+                color: const Color(0xfff1f1f1),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Bạn không có tài khoản?',
+                        style: TextStyle(fontSize: 18)),
+                    Text(
+                      ' Đăng kí',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.redAccent,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
