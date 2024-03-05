@@ -1,9 +1,10 @@
-import 'package:clone_app_tiktok/Route/App_Route.dart';
-import 'package:clone_app_tiktok/provider/GlobalState.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+
+import '../Route/App_Route.dart';
+import '../provider/GlobalState.dart';
 
 class FooterApp extends StatefulWidget {
   const FooterApp({super.key});
@@ -17,7 +18,6 @@ class _FooterAppState extends State<FooterApp> {
 
   @override
   Widget build(BuildContext context) {
-    bool isLogin = Provider.of<GlobalState>(context, listen: true).isLogin;
     return Positioned(
       bottom: 0,
       left: 0,

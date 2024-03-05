@@ -1,11 +1,15 @@
-import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/Description/ExpandableText.dart';
 import 'package:flutter/material.dart';
 
+import 'expandable_text.dart';
+
 class VideoDescription extends StatefulWidget {
-  String username;
-  String description;
-  VideoDescription(
-      {super.key, required this.username, required this.description});
+  final String username;
+  final String description;
+  const VideoDescription({
+    super.key,
+    required this.username,
+    required this.description,
+  });
 
   @override
   State<VideoDescription> createState() => _VideoDescriptionState();

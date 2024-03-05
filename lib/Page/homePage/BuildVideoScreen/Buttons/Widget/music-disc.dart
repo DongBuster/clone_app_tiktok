@@ -24,10 +24,8 @@ class _MusicDiscState extends State<MusicDisc> with TickerProviderStateMixin {
         } else {
           _animationController.stop();
         }
-        // initState();
       });
     });
-    // _toggleAnimation();
     super.initState();
   }
 
@@ -58,10 +56,13 @@ class _MusicDiscState extends State<MusicDisc> with TickerProviderStateMixin {
         width: 60,
         height: 60,
         decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-                image: AssetImage('assets/img/sontung.jpg'),
-                fit: BoxFit.cover)),
+          shape: BoxShape.circle,
+          image: DecorationImage(
+              image: AssetImage(
+                'assets/img/sontung.jpg',
+              ),
+              fit: BoxFit.cover),
+        ),
       ),
     );
   }

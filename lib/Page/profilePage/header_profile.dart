@@ -1,19 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:clone_app_tiktok/provider/GlobalState.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:clone_app_tiktok/Page/loginPage/loginWithGoogle.dart';
 
-class headerProfile extends StatefulWidget {
-  String nickname;
-  headerProfile({super.key, required this.nickname});
+import '../../provider/GlobalState.dart';
+import '../../service/login_with_google.dart';
+
+class HeaderProfile extends StatefulWidget {
+  final String nickname;
+  const HeaderProfile({super.key, required this.nickname});
 
   @override
-  State<headerProfile> createState() => _headerProfileState();
+  State<HeaderProfile> createState() => _HeaderProfileState();
 }
 
-class _headerProfileState extends State<headerProfile> {
+class _HeaderProfileState extends State<HeaderProfile> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -74,39 +75,33 @@ class _headerProfileState extends State<headerProfile> {
                       ),
                       items: [
                         PopupMenuItem(
-                            onTap: () async {
-                              await loginWithGoogle.logoutWithGoogle();
-                              // if (mounted) {
+                          onTap: () async {
+                            await LoginWithGoogle.logoutWithGoogle();
+
+                            if (context.mounted) {
                               setState(() {
                                 Provider.of<GlobalState>(context, listen: false)
                                     .setIsLogin(false);
                               });
-                              // Navigator.pop(context);
 
                               context.go('/login');
-                              print(
-                                  'islogin: ${Provider.of<GlobalState>(context, listen: false).isLogin}');
-                              // } else {
-                              //   ScaffoldMessenger.of(context).showSnackBar(
-                              //     const SnackBar(
-                              //       content: Text('Logout failed'),
-                              //     ),
-                              //   );
-                              //   // }
-                            },
-                            height: 20,
-                            value: 'logout',
-                            child: TextButton.icon(
-                                onPressed: null,
-                                icon: const Icon(
-                                  Icons.logout,
-                                  color: Colors.red,
-                                ),
-                                label: const Text(
-                                  'Logout',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.black),
-                                ))),
+                            }
+                          },
+                          height: 20,
+                          value: 'logout',
+                          child: TextButton.icon(
+                            onPressed: null,
+                            icon: const Icon(
+                              Icons.logout,
+                              color: Colors.red,
+                            ),
+                            label: const Text(
+                              'Logout',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.black),
+                            ),
+                          ),
+                        ),
                       ],
                     );
                   },
@@ -125,14 +120,14 @@ class _headerProfileState extends State<headerProfile> {
   }
 }
 
-class detailMenu extends StatefulWidget {
-  const detailMenu({super.key});
+class DetailMenu extends StatefulWidget {
+  const DetailMenu({super.key});
 
   @override
-  State<detailMenu> createState() => _detailMenuState();
+  State<DetailMenu> createState() => _DetailMenuState();
 }
 
-class _detailMenuState extends State<detailMenu> {
+class _DetailMenuState extends State<DetailMenu> {
   @override
   Widget build(BuildContext context) {
     return drawerMenu();

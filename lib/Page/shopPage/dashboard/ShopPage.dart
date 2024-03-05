@@ -1,10 +1,10 @@
-import 'package:clone_app_tiktok/Animations/AnimationsPage.dart';
-import 'package:clone_app_tiktok/Page/shopPage/flashSale.dart';
-import 'package:clone_app_tiktok/Page/shopPage/headerShop.dart';
-import 'package:clone_app_tiktok/Page/shopPage/offerCustomer.dart';
-import 'package:clone_app_tiktok/Page/shopPage/products/products.dart';
-
 import 'package:flutter/material.dart';
+
+import '../../../utils/export.dart';
+import '../flashSale.dart';
+import '../headerShop.dart';
+import '../offerCustomer.dart';
+import '../products/products.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});

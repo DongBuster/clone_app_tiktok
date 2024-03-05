@@ -1,20 +1,17 @@
 import 'dart:async';
-import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/Buttons/Buttons.dart';
-import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/Description/VideoDescription.dart';
-import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/VideoProgressBar.dart';
-import 'package:clone_app_tiktok/Animations/HeartAnimation.dart';
-import 'package:clone_app_tiktok/common/loading_indicator.dart';
-import 'package:clone_app_tiktok/main.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:gap/gap.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../Animations/heart_animation.dart';
+import '../../../common/loading_indicator.dart';
+import '../../../main.dart';
+import '../../../utils/export.dart';
+
 class Video extends StatefulWidget {
-  String linkVideo;
-  String username;
-  String description;
+  final String linkVideo;
+  final String username;
+  final String description;
   Video(
       {super.key,
       required this.linkVideo,
@@ -33,7 +30,7 @@ class _VideoState extends State<Video> {
   late VideoPlayerController _videoPlayerController;
 
   bool favorited = false;
-  bool favorited_double = false;
+  bool favoritedDouble = false;
   //
   bool isTilted = false;
   bool isplaying = true;
@@ -42,6 +39,7 @@ class _VideoState extends State<Video> {
   //
   final keyText = GlobalKey();
 
+  // get position when ontap screen
   Offset? _tapPosition;
   void _getTapPosition(TapDownDetails details) async {
     final tapPosition = details.globalPosition;
@@ -52,9 +50,6 @@ class _VideoState extends State<Video> {
 
   @override
   void dispose() {
-    // AppRoute.router.location != '/home'
-    //     ? _videoPlayerController.dispose()
-    //     : null;
     _videoPlayerController.dispose();
     super.dispose();
   }
@@ -66,9 +61,9 @@ class _VideoState extends State<Video> {
           ..initialize().then((_) {
             setState(() {});
           });
-    super.initState();
     _videoPlayerController.play();
     _videoPlayerController.setLooping(true);
+    super.initState();
   }
 
   @override
@@ -76,18 +71,19 @@ class _VideoState extends State<Video> {
     mq = MediaQuery.of(context).size;
     return Stack(
       children: [
+        // screen loading
         const ThreeBallIndicator(),
+        // screen play video
         SizedBox(
           width: mq.width,
           height: mq.height,
           child: AspectRatio(
             aspectRatio: _videoPlayerController.value.aspectRatio,
-            // Use the VideoPlayer to display the video.
             child: VideoPlayer(_videoPlayerController),
           ),
         ),
 
-        // handles play, pause video ; heart animation when clicked screen
+        // handles play, pause video , heart animation when clicked screen
         GestureDetector(
           key: keyText,
           onTap: () {
@@ -104,7 +100,7 @@ class _VideoState extends State<Video> {
           onDoubleTapDown: (TapDownDetails details) {
             _getTapPosition(details);
             setState(() {
-              favorited_double = true;
+              favoritedDouble = true;
               isTilted = !isTilted;
               favorited = true;
 
@@ -118,7 +114,7 @@ class _VideoState extends State<Video> {
               // debugPrint('${mq.width}');
               // debugPrint('${mq.height}');
               _listIconHeart.add(HeartAnimation(
-                isFavorite: favorited_double,
+                isFavorite: favoritedDouble,
                 isTilted: isTilted,
                 top: _tapPosition!.dy,
                 left: _tapPosition!.dx,

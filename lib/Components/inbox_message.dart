@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 
 class InboxMessage extends StatefulWidget {
-  Color backgroundColor;
-  IconData icon;
-  int quantity;
-  String title;
-  String subtitle;
-  InboxMessage(
-      {super.key,
-      required this.backgroundColor,
-      required this.icon,
-      required this.title,
-      required this.subtitle,
-      required this.quantity});
+  final Color backgroundColor;
+  final IconData icon;
+  final int quantity;
+  final String title;
+  final String subtitle;
+  const InboxMessage({
+    super.key,
+    required this.backgroundColor,
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.quantity,
+  });
 
   @override
   State<InboxMessage> createState() => _InboxMessageState();
@@ -23,7 +24,6 @@ class _InboxMessageState extends State<InboxMessage> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // width: 100,
       height: 70,
       child: ListTile(
         leading: Container(

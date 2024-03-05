@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class TextContentVideo extends StatefulWidget {
-  String title;
-  String textDescription;
-  String nameMusic;
+  final String title;
+  final String textDescription;
+  final String nameMusic;
 
-  TextContentVideo(
-      {super.key, required this.textDescription,
+  const TextContentVideo(
+      {super.key,
+      required this.textDescription,
       required this.nameMusic,
       required this.title});
 

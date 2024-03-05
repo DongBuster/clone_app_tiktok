@@ -1,11 +1,12 @@
-import 'package:clone_app_tiktok/provider/GlobalState.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SlideTransitionScreen extends StatefulWidget {
-  late Widget child;
+import '../provider/GlobalState.dart';
 
-  SlideTransitionScreen({super.key, required this.child});
+class SlideTransitionScreen extends StatefulWidget {
+  final Widget child;
+
+  const SlideTransitionScreen({super.key, required this.child});
 
   @override
   State<SlideTransitionScreen> createState() => _SlideTransitionScreenState();

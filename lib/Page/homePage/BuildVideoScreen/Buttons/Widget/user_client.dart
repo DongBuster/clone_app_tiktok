@@ -1,5 +1,6 @@
-import 'package:clone_app_tiktok/Animations/FollowIconAnimation.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../Animations/follow_icon_animation.dart';
 
 class UserClient extends StatelessWidget {
   const UserClient({super.key});

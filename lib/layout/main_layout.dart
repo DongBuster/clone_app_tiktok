@@ -1,6 +1,6 @@
-import 'package:clone_app_tiktok/Animations/AnimationsPage.dart';
 import 'package:flutter/material.dart';
-import 'package:clone_app_tiktok/BuildApp/FooterApp.dart';
+
+import '../BuildApp/footer_app.dart';
 
 class MainLayout extends StatefulWidget {
   final Widget child;

@@ -1,12 +1,12 @@
 // import 'package:clone_app_tiktok/BuildApp/MyApp.dart';
-import 'package:clone_app_tiktok/provider/GlobalState.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'BuildApp/MyApp.dart';
-import 'firebase_options.dart';
+import 'BuildApp/my_app.dart';
+import 'firebase/firebase_options.dart';
+import 'provider/GlobalState.dart';
 
 late Size mq;
 void main() async {

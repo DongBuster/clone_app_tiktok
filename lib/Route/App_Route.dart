@@ -1,8 +1,9 @@
-import 'package:clone_app_tiktok/Page/loginPage/login_screen.dart';
-import 'package:clone_app_tiktok/layout/mainLayout.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:clone_app_tiktok/utils/export.dart';
+
+import '../Page/loginPage/login_screen.dart';
+import '../layout/main_layout.dart';
+import '../utils/export.dart';
 
 final GlobalKey<NavigatorState> _rootNavigator = GlobalKey(debugLabel: 'root');
 final GlobalKey<NavigatorState> _shellNavigator =
@@ -22,7 +23,7 @@ class AppRoute {
               path: '/login',
               name: 'loginScreen',
               builder: (context, state) =>
-                  const MainLayout(child: loginScreen()),
+                  const MainLayout(child: LoginScreen()),
             ),
             GoRoute(
               path: '/home',

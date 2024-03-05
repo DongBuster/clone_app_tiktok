@@ -4,8 +4,8 @@ import 'package:video_player/video_player.dart';
 import '../../../main.dart';
 
 class VideoProgressBar extends StatefulWidget {
-  late VideoPlayerController controller;
-  VideoProgressBar({super.key, required this.controller});
+  final VideoPlayerController controller;
+  const VideoProgressBar({super.key, required this.controller});
 
   @override
   State<VideoProgressBar> createState() => _VideoProgressBarState();

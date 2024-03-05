@@ -1,26 +1,16 @@
 import 'package:flutter/material.dart';
 
 class CustomBorder extends ShapeBorder {
-  // @override
-  // Path getInnerPath(Rect rect, {required TextDirection textDirection}) =>
-  //     _buildPath(rect);
-
-  // @override
-  // Path getOuterPath(Rect rect, {TextDirection textDirection}) =>
-  //     _buildPath(rect);
-
   @override
   EdgeInsetsGeometry get dimensions => EdgeInsets.zero;
 
   @override
   Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
-    // TODO: implement getInnerPath
     return _buildPath(rect);
   }
 
   @override
   Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
-    // TODO: implement getOuterPath
     return _buildPath(rect);
   }
 

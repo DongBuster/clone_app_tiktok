@@ -1,5 +1,6 @@
-import 'package:clone_app_tiktok/Animations/AnimationsPage.dart';
 import 'package:flutter/material.dart';
+
+import '../../Animations/animations_page.dart';
 
 class AddVideo extends StatefulWidget {
   const AddVideo({super.key});

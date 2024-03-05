@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class TiltOnTapWidget extends StatefulWidget {
   final Widget child;
-  bool isTilted;
-  TiltOnTapWidget({super.key, required this.child, required this.isTilted});
+  final bool isTilted;
+  const TiltOnTapWidget(
+      {super.key, required this.child, required this.isTilted});
 
   @override
   _TiltOnTapWidgetState createState() => _TiltOnTapWidgetState();

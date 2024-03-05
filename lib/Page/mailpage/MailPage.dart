@@ -1,10 +1,11 @@
-import 'package:clone_app_tiktok/Animations/AnimationsPage.dart';
-import 'package:clone_app_tiktok/Components/InboxMessage.dart';
-import 'package:clone_app_tiktok/Components/createUserImage.dart';
-import 'package:clone_app_tiktok/Page/loginPage/login_screen.dart';
-import 'package:clone_app_tiktok/provider/GlobalState.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../Animations/animations_page.dart';
+import '../../Components/create_user_image.dart';
+import '../../Components/inbox_message.dart';
+import '../../provider/GlobalState.dart';
+import '../loginPage/login_screen.dart';
 
 class MailPage extends StatefulWidget {
   const MailPage({super.key});
@@ -16,7 +17,6 @@ class MailPage extends StatefulWidget {
 class _MailPageState extends State<MailPage> {
   String url =
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbpbjUU1mnP1ymtnMIgzXk0Q2ESozCUX1q2Q&usqp=CAU';
-  // late TextEditingController _controller;
   @override
   void initState() {
     super.initState();
@@ -25,7 +25,7 @@ class _MailPageState extends State<MailPage> {
   @override
   Widget build(BuildContext context) {
     return context.read<GlobalState>().isLogin == false
-        ? const loginScreen()
+        ? const LoginScreen()
         : SlideTransitionScreen(
             child: Container(
               padding: const EdgeInsets.only(bottom: 61),
@@ -107,7 +107,7 @@ class _MailPageState extends State<MailPage> {
                     ),
                   ),
 
-                  Column(
+                  const Column(
                     children: [
                       InboxMessage(
                         icon: Icons.person,

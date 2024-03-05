@@ -1,12 +1,12 @@
-import 'package:clone_app_tiktok/CustomWidget/TiltOnTapWidget.dart';
 import 'package:flutter/material.dart';
+import '../CustomWidget/tilt_ontap_widget.dart';
 
 class HeartAnimation extends StatefulWidget {
-  bool isTilted;
-  bool isFavorite;
-  double top, left;
+  final bool isTilted;
+  final bool isFavorite;
+  final double top, left;
 
-  HeartAnimation(
+  const HeartAnimation(
       {super.key,
       required this.isTilted,
       required this.isFavorite,

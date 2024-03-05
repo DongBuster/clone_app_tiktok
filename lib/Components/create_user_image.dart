@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class MailImageUser extends StatefulWidget {
-  String name;
-  late String url;
-  MailImageUser({super.key, required this.url, required this.name});
+  final String name;
+  final String url;
+  const MailImageUser({super.key, required this.url, required this.name});
 
   @override
   State<MailImageUser> createState() => _MailImageUserState();
@@ -17,9 +17,7 @@ class _MailImageUserState extends State<MailImageUser> {
       alignment: Alignment.center,
       margin: const EdgeInsets.only(left: 10),
       child: Column(
-        // crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        // mainAxisSize: MainAxisSize.min,
         children: [
           CachedNetworkImage(
             imageUrl: widget.url,
@@ -44,7 +42,8 @@ class _MailImageUserState extends State<MailImageUser> {
             constraints: const BoxConstraints(maxWidth: 90),
             child: Text(
               widget.name,
-              style: const TextStyle(fontSize: 14, overflow: TextOverflow.ellipsis),
+              style: const TextStyle(
+                  fontSize: 14, overflow: TextOverflow.ellipsis),
             ),
           )
         ],

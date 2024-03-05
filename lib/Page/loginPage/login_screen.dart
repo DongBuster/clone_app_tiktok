@@ -1,22 +1,22 @@
-import 'package:clone_app_tiktok/Page/loginPage/loginWithGoogle.dart';
-import 'package:clone_app_tiktok/Route/App_Route.dart';
-import 'package:clone_app_tiktok/provider/GlobalState.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../../Animations/AnimationsPage.dart';
+import '../../Animations/animations_page.dart';
+import '../../Route/App_Route.dart';
 import '../../main.dart';
+import '../../provider/GlobalState.dart';
+import '../../service/login_with_google.dart';
 
-class loginScreen extends StatefulWidget {
-  const loginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<loginScreen> createState() => _loginScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _loginScreenState extends State<loginScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
@@ -27,7 +27,7 @@ class _loginScreenState extends State<loginScreen> {
     mq = MediaQuery.of(context).size;
     Provider.of<GlobalState>(context, listen: true).isLogin == false
         ? WidgetsBinding.instance
-            .addPostFrameCallback((_) => ShowModalBottomSheet(context))
+            .addPostFrameCallback((_) => modalBottomSheet(context))
         : null;
     return SlideTransitionScreen(
       child: Column(
@@ -82,7 +82,7 @@ class _loginScreenState extends State<loginScreen> {
                 const Gap(20),
                 ElevatedButton(
                   onPressed: () {
-                    ShowModalBottomSheet(context);
+                    modalBottomSheet(context);
                   },
                   style: const ButtonStyle(
                     minimumSize: MaterialStatePropertyAll(
@@ -110,7 +110,7 @@ class _loginScreenState extends State<loginScreen> {
   }
 }
 
-void ShowModalBottomSheet(BuildContext context) {
+void modalBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     shape: const RoundedRectangleBorder(
@@ -119,12 +119,12 @@ void ShowModalBottomSheet(BuildContext context) {
     isScrollControlled: true,
     useRootNavigator: true,
     builder: (BuildContext context) {
-      return const registerAccout();
+      return const RegisterAccout();
     },
   );
 }
 
-Widget LoginWith(String logoImage, String loginWith) {
+Widget loginWithOther(String logoImage, String loginWith) {
   return Container(
     alignment: Alignment.center,
     width: 350,
@@ -152,14 +152,14 @@ Widget LoginWith(String logoImage, String loginWith) {
 }
 
 //
-class registerAccout extends StatefulWidget {
-  const registerAccout({super.key});
+class RegisterAccout extends StatefulWidget {
+  const RegisterAccout({super.key});
 
   @override
-  State<registerAccout> createState() => _registerAccoutState();
+  State<RegisterAccout> createState() => _RegisterAccoutState();
 }
 
-class _registerAccoutState extends State<registerAccout> {
+class _RegisterAccoutState extends State<RegisterAccout> {
   bool isEnabled = false;
 
   @override
@@ -234,16 +234,12 @@ class _registerAccoutState extends State<registerAccout> {
                       const Gap(30),
                       GestureDetector(
                         onTap: () async {
-                          await loginWithGoogle.signInWithGoogle();
+                          await LoginWithGoogle.signInWithGoogle();
 
                           if (context.mounted) {
                             Provider.of<GlobalState>(context, listen: false)
                                 .setIsLogin(true);
-                            // print(
-                            //     'islogin: ${Provider.of<GlobalState>(context, listen: false).isLogin}');
-                            // print('nameRoute:  ${AppRoute.router.location}');
-                            // print(
-                            //     'index:  ${context.read<GlobalState>().indexPage}');
+
                             Navigator.pop(context);
 
                             context.go('/home');
@@ -255,23 +251,23 @@ class _registerAccoutState extends State<registerAccout> {
                             );
                           }
                         },
-                        child: LoginWith('assets/img/login/googleLogo.png',
+                        child: loginWithOther('assets/img/login/googleLogo.png',
                             'Tiếp tục với Google'),
                       ),
                       const Gap(15),
-                      LoginWith('assets/img/login/personLogo.png',
+                      loginWithOther('assets/img/login/personLogo.png',
                           'Số điện thoại / Email / Tiktok ID'),
                       const Gap(15),
-                      LoginWith('assets/img/login/facebookLogo.png',
+                      loginWithOther('assets/img/login/facebookLogo.png',
                           'Tiếp tục Facebook'),
                       const Gap(15),
-                      LoginWith('assets/img/login/intargramLogo.png',
+                      loginWithOther('assets/img/login/intargramLogo.png',
                           'Tiếp tục với Intargram'),
                       const Gap(15),
-                      LoginWith('assets/img/login/twitterLogo.png',
+                      loginWithOther('assets/img/login/twitterLogo.png',
                           'Tiếp tục với Twitter'),
                       const Gap(15),
-                      LoginWith(
+                      loginWithOther(
                           'assets/img/login/lineLogo.png', 'Tiếp tục với LINE'),
                       const Gap(30),
                     ]),

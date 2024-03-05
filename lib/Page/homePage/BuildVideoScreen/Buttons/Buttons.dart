@@ -1,23 +1,21 @@
-import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/Buttons/ButtonBookmark.dart';
-import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/Buttons/ButtonComment.dart';
-import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/Buttons/ButtonFavorites.dart';
-import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/Buttons/ButtonShare.dart';
-import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/Buttons/MusicDisc.dart';
-import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/Buttons/User_Client.dart';
 import 'package:flutter/material.dart';
+import 'Widget/User_Client.dart';
+import 'Widget/button_bookmark.dart';
+import 'Widget/button_comment.dart';
+import 'Widget/button_favorites.dart';
+import 'Widget/button_share.dart';
+import 'Widget/music-disc.dart';
 
 class Buttons extends StatefulWidget {
-  bool favorited;
-  bool isplaying;
-  Buttons({super.key, required this.favorited, required this.isplaying});
+  final bool favorited;
+  final bool isplaying;
+  const Buttons({super.key, required this.favorited, required this.isplaying});
 
   @override
   State<Buttons> createState() => _ButtonsState();
 }
 
 class _ButtonsState extends State<Buttons> {
-  final bool _isVisible = false;
-
   @override
   Widget build(BuildContext context) {
     return Positioned(
