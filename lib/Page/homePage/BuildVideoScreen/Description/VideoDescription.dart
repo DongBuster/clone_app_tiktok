@@ -2,7 +2,10 @@ import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/Description/Expa
 import 'package:flutter/material.dart';
 
 class VideoDescription extends StatefulWidget {
-  const VideoDescription({super.key});
+  String username;
+  String description;
+  VideoDescription(
+      {super.key, required this.username, required this.description});
 
   @override
   State<VideoDescription> createState() => _VideoDescriptionState();
@@ -15,9 +18,8 @@ class _VideoDescriptionState extends State<VideoDescription> {
       bottom: 80,
       left: 10,
       child: TextContentVideo(
-        title: 'Saleall',
-        textDescription:
-            'Một người vợ đảm đang bên China nấu ăn cho chồng. Trông thật ngon lành đến lạ thường, chắc không đơn giản như vậy ...  #China #Funny',
+        title: widget.username,
+        textDescription: widget.description,
         nameMusic: '♫ Saleall Âm thanh Gốc',
       ),
     );

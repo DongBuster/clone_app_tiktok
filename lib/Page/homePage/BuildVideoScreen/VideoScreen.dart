@@ -3,14 +3,23 @@ import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/Buttons/Buttons.
 import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/Description/VideoDescription.dart';
 import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/VideoProgressBar.dart';
 import 'package:clone_app_tiktok/Animations/HeartAnimation.dart';
-import 'package:clone_app_tiktok/Route/App_Route.dart';
+import 'package:clone_app_tiktok/common/loading_indicator.dart';
 import 'package:clone_app_tiktok/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:gap/gap.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:video_player/video_player.dart';
 
 class Video extends StatefulWidget {
-  VideoPlayerController controller;
-  Video({super.key, required this.controller});
+  String linkVideo;
+  String username;
+  String description;
+  Video(
+      {super.key,
+      required this.linkVideo,
+      required this.username,
+      required this.description});
 
   //  = VideoPlayerController.network(
   //     'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4');
@@ -21,7 +30,7 @@ class Video extends StatefulWidget {
 }
 
 class _VideoState extends State<Video> {
-  // late Future<void> _initializeVideoPlayerFuture;
+  late VideoPlayerController _videoPlayerController;
 
   bool favorited = false;
   bool favorited_double = false;
@@ -43,15 +52,23 @@ class _VideoState extends State<Video> {
 
   @override
   void dispose() {
-    AppRoute.router.location != '/home' ? widget.controller.dispose() : null;
+    // AppRoute.router.location != '/home'
+    //     ? _videoPlayerController.dispose()
+    //     : null;
+    _videoPlayerController.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
+    _videoPlayerController =
+        VideoPlayerController.networkUrl(Uri.parse(widget.linkVideo))
+          ..initialize().then((_) {
+            setState(() {});
+          });
     super.initState();
-    widget.controller.play();
-    widget.controller.setLooping(true);
+    _videoPlayerController.play();
+    _videoPlayerController.setLooping(true);
   }
 
   @override
@@ -59,13 +76,14 @@ class _VideoState extends State<Video> {
     mq = MediaQuery.of(context).size;
     return Stack(
       children: [
+        const ThreeBallIndicator(),
         SizedBox(
           width: mq.width,
           height: mq.height,
           child: AspectRatio(
-            aspectRatio: widget.controller.value.aspectRatio,
+            aspectRatio: _videoPlayerController.value.aspectRatio,
             // Use the VideoPlayer to display the video.
-            child: VideoPlayer(widget.controller),
+            child: VideoPlayer(_videoPlayerController),
           ),
         ),
 
@@ -76,9 +94,9 @@ class _VideoState extends State<Video> {
             setState(() {
               isplaying = !isplaying;
               if (isplaying == true) {
-                widget.controller.play();
+                _videoPlayerController.play();
               } else {
-                widget.controller.pause();
+                _videoPlayerController.pause();
               }
               debugPrint("$isplaying");
             });
@@ -125,8 +143,11 @@ class _VideoState extends State<Video> {
 
         Buttons(favorited: favorited, isplaying: isplaying),
         // video progress bar
-        VideoProgressBar(controller: widget.controller),
-        const VideoDescription()
+        VideoProgressBar(controller: _videoPlayerController),
+        VideoDescription(
+          username: widget.username,
+          description: widget.description,
+        )
       ],
     );
   }

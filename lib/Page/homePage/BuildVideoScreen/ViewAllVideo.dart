@@ -1,6 +1,12 @@
 import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/VideoScreen.dart';
+import 'package:clone_app_tiktok/common/loading_indicator.dart';
 import 'package:clone_app_tiktok/main.dart';
+import 'package:clone_app_tiktok/model/video.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:gap/gap.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:video_player/video_player.dart';
 // import 'package:firebase_database/firebase_database.dart';
 
@@ -15,41 +21,17 @@ class ViewAllVideo extends StatefulWidget {
 
 class _ViewAllVideoState extends State<ViewAllVideo> {
   final PageController pageController = PageController();
-
-  // FirebaseDatabase database = FirebaseDatabase.instance;
-  // DatabaseReference ref = FirebaseDatabase.instance.ref();
-
-  final List<String> videoAssets = [
-    'assets/video/1.mp4',
-    'assets/video/2.mp4',
-    'assets/video/3.mp4',
-    'assets/video/4.mp4',
-  ];
-
-  Future<VideoPlayerController> initializeVideoController(
-      String videoAssetPath) async {
-    var controller = VideoPlayerController.asset(videoAssetPath);
-    await controller.initialize();
-    return controller;
-  }
-
-  final List<Future<VideoPlayerController>> videoControllerFutures = [];
-  Future<void> loadVideoControllers() async {
-    for (final assetPath in videoAssets) {
-      videoControllerFutures.add(initializeVideoController(assetPath));
-    }
-  }
+  final videos = Supabase.instance.client.from('videos').select();
 
   @override
   void dispose() {
-    // videoControllers.map((e) => e.dispose());
+    pageController.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    loadVideoControllers();
   }
 
   @override
@@ -57,25 +39,25 @@ class _ViewAllVideoState extends State<ViewAllVideo> {
     mq = MediaQuery.of(context).size;
     // print(ref);
 
-    return PageView.builder(
-      itemCount: videoAssets.length,
-      scrollDirection: Axis.vertical,
-      controller: pageController,
-      itemBuilder: (context, index) {
-        return FutureBuilder<VideoPlayerController>(
-          future: videoControllerFutures[index],
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Video(controller: snapshot.data!);
-            } else {
-              return const Center(
-                child: SizedBox(
-                  width: 30,
-                  height: 30,
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            }
+    return FutureBuilder<List<Map<String, dynamic>>>(
+      future: videos,
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const ThreeBallIndicator();
+        }
+        final countries = snapshot.data!;
+        // print(countries.length);
+
+        return PageView.builder(
+          itemCount: countries.length,
+          scrollDirection: Axis.vertical,
+          controller: pageController,
+          itemBuilder: (context, index) {
+            return Video(
+              linkVideo: countries[index]['linkvideo'],
+              username: countries[index]['username'],
+              description: countries[index]['description'],
+            );
           },
         );
       },
