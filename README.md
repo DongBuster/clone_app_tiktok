@@ -1,7 +1,7 @@
 ## clone_app_tiktok
 The product uses ui/ux, the idea of the Tiktok app.
 This is not Tiktok app
-## Link Youtube demo app
+
 
 ## Getting Started
 
