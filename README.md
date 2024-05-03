@@ -1,6 +1,7 @@
-# clone_app_tiktok
+## clone_app_tiktok
+The product uses ui/ux, the idea of the Tiktok app.
+This is not Tiktok app
 
-A new Flutter project.
 
 ## Getting Started
 
