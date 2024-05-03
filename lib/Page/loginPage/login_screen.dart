@@ -25,10 +25,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     mq = MediaQuery.of(context).size;
-    Provider.of<GlobalState>(context, listen: true).isLogin == false
-        ? WidgetsBinding.instance
-            .addPostFrameCallback((_) => modalBottomSheet(context))
-        : null;
+    // Provider.of<GlobalState>(context, listen: true).isLogin == false
+    //     ? WidgetsBinding.instance
+    //         .addPostFrameCallback((_) => modalBottomSheet(context))
+    //     : null;
     return SlideTransitionScreen(
       child: Column(
         children: [
@@ -237,8 +237,8 @@ class _RegisterAccoutState extends State<RegisterAccout> {
                           await LoginWithGoogle.signInWithGoogle();
 
                           if (context.mounted) {
-                            Provider.of<GlobalState>(context, listen: false)
-                                .setIsLogin(true);
+                            // Provider.of<GlobalState>(context, listen: false)
+                            //     .setIsLogin(true);
 
                             Navigator.pop(context);
 

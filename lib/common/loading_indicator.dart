@@ -24,21 +24,21 @@ class _ThreeBallIndicatorState extends State<ThreeBallIndicator> {
           children: [
             const Icon(Icons.circle, size: 10, color: Colors.red)
                 .animate(
-                    delay: 100.milliseconds,
-                    onPlay: (controller) => controller.repeat())
-                .moveY(begin: 1, end: -1),
-            const Gap(2),
-            const Icon(Icons.circle, size: 10, color: Colors.blue)
-                .animate(
-                    delay: 200.milliseconds,
+                    // delay: 1.seconds,
                     onPlay: (controller) => controller.repeat())
                 .moveY(begin: 2, end: -2),
             const Gap(2),
+            const Icon(Icons.circle, size: 10, color: Colors.blue)
+                .animate(
+                    // delay: 2.seconds,
+                    onPlay: (controller) => controller.repeat())
+                .moveY(begin: -1, end: 1),
+            const Gap(2),
             const Icon(Icons.circle, size: 10, color: Colors.white)
                 .animate(
-                    delay: 300.milliseconds,
+                    // delay: 3.seconds,
                     onPlay: (controller) => controller.repeat())
-                .moveY(begin: 3, end: -3),
+                .moveY(begin: -2, end: 2),
           ],
         ));
   }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../Animations/heart_animation.dart';
@@ -9,19 +10,16 @@ import '../../../main.dart';
 import '../../../utils/export.dart';
 
 class Video extends StatefulWidget {
-  final String linkVideo;
+  final VideoPlayerController linkVideo;
   final String username;
   final String description;
-  Video(
-      {super.key,
-      required this.linkVideo,
-      required this.username,
-      required this.description});
+  const Video({
+    super.key,
+    required this.linkVideo,
+    required this.username,
+    required this.description,
+  });
 
-  //  = VideoPlayerController.network(
-  //     'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4');
-
-  // required this.controller
   @override
   State<Video> createState() => _VideoState();
 }
@@ -48,27 +46,32 @@ class _VideoState extends State<Video> {
     });
   }
 
-  @override
-  void dispose() {
-    _videoPlayerController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _videoPlayerController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   void initState() {
-    _videoPlayerController =
-        VideoPlayerController.networkUrl(Uri.parse(widget.linkVideo))
-          ..initialize().then((_) {
-            setState(() {});
-          });
-    _videoPlayerController.play();
-    _videoPlayerController.setLooping(true);
+    _videoPlayerController = widget.linkVideo;
+    // _videoPlayerController.setLooping(true);
+    // _videoPlayerController =
+    //     VideoPlayerController.networkUrl(Uri.parse(widget.linkVideo))
+    //       ..initialize().then((_) {
+    //         setState(() {
+    //           _videoPlayerController.play();
+    //           _videoPlayerController.setLooping(true);
+    //         });
+    //       });
+
     super.initState();
   }
 
   @override
   build(BuildContext context) {
     mq = MediaQuery.of(context).size;
+    setState(() {});
     return Stack(
       children: [
         // screen loading
@@ -128,11 +131,14 @@ class _VideoState extends State<Video> {
         // handle icon pause video
         isplaying
             ? const SizedBox()
-            : const Center(
-                child: Icon(
-                  Icons.play_arrow,
-                  size: 50,
-                  color: Colors.white38,
+            : Center(
+                child: GestureDetector(
+                  onTap: () => isplaying = !isplaying,
+                  child: const Icon(
+                    Icons.play_arrow,
+                    size: 50,
+                    color: Colors.white38,
+                  ),
                 ),
               ),
         // contents right

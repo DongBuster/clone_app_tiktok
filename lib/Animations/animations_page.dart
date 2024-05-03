@@ -31,12 +31,12 @@ class _SlideTransitionScreenState extends State<SlideTransitionScreen>
 
   @override
   Widget build(BuildContext context) {
-    var isAnimationToLeftToRight =
-        Provider.of<GlobalState>(context, listen: false)
-            .isAnimationToLeftToRight;
+    // var isAnimationToLeftToRight =
+    //     Provider.of<GlobalState>(context, listen: false)
+    //         .isAnimationToLeftToRight;
     return SlideTransition(
       position: Tween<Offset>(
-        begin: Offset(isAnimationToLeftToRight ? 1.0 : -1.0, 0.0),
+        begin: const Offset(-1.0, 0.0),
         end: Offset.zero,
       ).animate(CurvedAnimation(
         parent: _controller,

@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../Route/App_Route.dart';
-import '../provider/GlobalState.dart';
+// import '../provider/GlobalState.dart';
 
 class FooterApp extends StatefulWidget {
   const FooterApp({super.key});
@@ -19,11 +19,13 @@ class _FooterAppState extends State<FooterApp> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 0,
-      left: 0,
-      right: 0,
-      child: Consumer<GlobalState>(builder: (context, globalState, child) {
-        return Container(
+        bottom: 0,
+        left: 0,
+        right: 0,
+        child:
+            // Consumer<GlobalState>(builder: (context, globalState, child) {
+            //   return
+            Container(
           padding: const EdgeInsets.only(left: 15, right: 15),
           height: 60,
           decoration: BoxDecoration(
@@ -42,8 +44,8 @@ class _FooterAppState extends State<FooterApp> {
                 GestureDetector(
                     onTap: () {
                       context.go('/home');
-                      Provider.of<GlobalState>(context, listen: false)
-                          .setIndexPage(0);
+                      // Provider.of<GlobalState>(context, listen: false)
+                      //     .setIndexPage(0);
                     },
                     child: SizedBox(
                       width: 50,
@@ -78,8 +80,8 @@ class _FooterAppState extends State<FooterApp> {
                 GestureDetector(
                     onTap: () {
                       context.go('/shop');
-                      Provider.of<GlobalState>(context, listen: false)
-                          .setIndexPage(1);
+                      // Provider.of<GlobalState>(context, listen: false)
+                      //     .setIndexPage(1);
                     },
                     child: SizedBox(
                       width: 50,
@@ -116,8 +118,8 @@ class _FooterAppState extends State<FooterApp> {
                 // add video
                 GestureDetector(
                   onTap: () {
-                    Provider.of<GlobalState>(context, listen: false)
-                        .setIndexPage(2);
+                    // Provider.of<GlobalState>(context, listen: false)
+                    //     .setIndexPage(2);
                     context.go('/addvideo');
                   },
                   child: Container(
@@ -156,8 +158,8 @@ class _FooterAppState extends State<FooterApp> {
                     onTap: () {
                       context.go('/mail');
 
-                      Provider.of<GlobalState>(context, listen: false)
-                          .setIndexPage(3);
+                      // Provider.of<GlobalState>(context, listen: false)
+                      //     .setIndexPage(3);
                     },
                     child: SizedBox(
                       width: 50,
@@ -194,8 +196,8 @@ class _FooterAppState extends State<FooterApp> {
                     onTap: () {
                       context.go('/profile');
 
-                      Provider.of<GlobalState>(context, listen: false)
-                          .setIndexPage(4);
+                      // Provider.of<GlobalState>(context, listen: false)
+                      //     .setIndexPage(4);
                     },
                     child: SizedBox(
                       width: 50,
@@ -228,8 +230,6 @@ class _FooterAppState extends State<FooterApp> {
                       ),
                     )),
               ]),
-        );
-      }),
-    );
+        ));
   }
 }

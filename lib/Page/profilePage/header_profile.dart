@@ -79,10 +79,10 @@ class _HeaderProfileState extends State<HeaderProfile> {
                             await LoginWithGoogle.logoutWithGoogle();
 
                             if (context.mounted) {
-                              setState(() {
-                                Provider.of<GlobalState>(context, listen: false)
-                                    .setIsLogin(false);
-                              });
+                              // setState(() {
+                              //   Provider.of<GlobalState>(context, listen: false)
+                              //       .setIsLogin(false);
+                              // });
 
                               context.go('/login');
                             }

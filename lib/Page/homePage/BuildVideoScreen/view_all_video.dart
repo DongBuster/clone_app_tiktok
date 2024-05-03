@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
+import 'package:preload_page_view/preload_page_view.dart';
+import 'package:video_player/video_player.dart';
 import '../../../common/loading_indicator.dart';
 import '../../../main.dart';
 import '../../../utils/export.dart';
@@ -15,12 +16,11 @@ class ViewAllVideo extends StatefulWidget {
 }
 
 class _ViewAllVideoState extends State<ViewAllVideo> {
-  final PageController pageController = PageController();
   final videos = Supabase.instance.client.from('videos').select();
+  List<VideoPlayerController> controllerVideos = [];
 
   @override
   void dispose() {
-    pageController.dispose();
     super.dispose();
   }
 
@@ -29,10 +29,16 @@ class _ViewAllVideoState extends State<ViewAllVideo> {
     super.initState();
   }
 
+  Future initVideoController(String url, int initIndex) async {
+    var controller = VideoPlayerController.networkUrl(Uri.parse(url));
+    controllerVideos.add(controller);
+    await controllerVideos[initIndex].initialize();
+    await controllerVideos[initIndex].setLooping(true);
+  }
+
   @override
   Widget build(BuildContext context) {
     mq = MediaQuery.of(context).size;
-
     return FutureBuilder<List<Map<String, dynamic>>>(
       future: videos,
       builder: (context, snapshot) {
@@ -40,14 +46,27 @@ class _ViewAllVideoState extends State<ViewAllVideo> {
           return const ThreeBallIndicator();
         }
         final countries = snapshot.data!;
+        for (var i = 0; i < countries.length; i++) {
+          initVideoController(countries[i]['linkvideo'], i);
+        }
+        controllerVideos[0].play();
 
-        return PageView.builder(
+        return PreloadPageView.builder(
           itemCount: countries.length,
           scrollDirection: Axis.vertical,
-          controller: pageController,
+          preloadPagesCount: 1,
+          onPageChanged: (position) {
+            if (position == 0) {
+              controllerVideos[position].play();
+              return;
+            }
+            controllerVideos[position].play();
+            controllerVideos[position - 1].pause();
+          },
+          controller: PreloadPageController(initialPage: 0),
           itemBuilder: (context, index) {
             return Video(
-              linkVideo: countries[index]['linkvideo'],
+              linkVideo: controllerVideos[index],
               username: countries[index]['username'],
               description: countries[index]['description'],
             );

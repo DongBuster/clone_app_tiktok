@@ -31,48 +31,49 @@ class _ProfilePageState extends State<ProfilePage>
 
   @override
   Widget build(BuildContext context) {
-    return context.read<GlobalState>().isLogin == false
-        ? const LoginScreen()
-        : SlideTransitionScreen(
-            child: SingleChildScrollView(
-              // physics: ,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  HeaderProfile(
-                    nickname: user?.displayName ?? 'Unknow User',
-                  ),
-
-                  const SizedBox(height: 5),
-
-                  imageUser(url: user?.photoURL ?? ''),
-                  const SizedBox(height: 5),
-
-                  infomationUser(
-                    name: user?.displayName ?? 'Unknow User',
-                  ),
-                  const SizedBox(height: 15),
-
-                  const activityUser(),
-                  const SizedBox(height: 5),
-
-                  const feature1(),
-                  const SizedBox(height: 15),
-
-                  const addBio(),
-                  const SizedBox(height: 5),
-
-                  const productOrder(),
-
-                  feature2(tabController: _tabController),
-                  SizedBox(
-                      height: 200,
-                      child: detailFeature2(tabController: _tabController)),
-                  // margin footer app
-                  const SizedBox(height: 62)
-                ],
-              ),
+    // return context.read<GlobalState>().isLogin == false
+    //     ? const LoginScreen()
+    //     :
+    return SlideTransitionScreen(
+      child: SingleChildScrollView(
+        // physics: ,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            HeaderProfile(
+              nickname: user?.displayName ?? 'Unknow User',
             ),
-          );
+
+            const SizedBox(height: 5),
+
+            imageUser(url: user?.photoURL ?? ''),
+            const SizedBox(height: 5),
+
+            infomationUser(
+              name: user?.displayName ?? 'Unknow User',
+            ),
+            const SizedBox(height: 15),
+
+            const activityUser(),
+            const SizedBox(height: 5),
+
+            const feature1(),
+            const SizedBox(height: 15),
+
+            const addBio(),
+            const SizedBox(height: 5),
+
+            const productOrder(),
+
+            feature2(tabController: _tabController),
+            SizedBox(
+                height: 200,
+                child: detailFeature2(tabController: _tabController)),
+            // margin footer app
+            const SizedBox(height: 62)
+          ],
+        ),
+      ),
+    );
   }
 }
