@@ -38,7 +38,6 @@ class _ProfilePageState extends State<ProfilePage>
       child: SingleChildScrollView(
         // physics: ,
         child: Column(
-          mainAxisSize: MainAxisSize.max,
           children: [
             HeaderProfile(
               nickname: user?.displayName ?? 'Unknow User',
@@ -67,8 +66,9 @@ class _ProfilePageState extends State<ProfilePage>
 
             feature2(tabController: _tabController),
             SizedBox(
-                height: 200,
-                child: detailFeature2(tabController: _tabController)),
+              height: 200,
+              child: detailFeature2(tabController: _tabController),
+            ),
             // margin footer app
             const SizedBox(height: 62)
           ],

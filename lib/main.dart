@@ -3,13 +3,10 @@ import 'package:clone_app_tiktok/Page/homePage/BuildVideoScreen/bloc/controller_
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'BuildApp/my_app.dart';
-import 'Page/homePage/BuildVideoScreen/view_all_video.dart';
 import 'firebase/firebase_options.dart';
-import 'provider/GlobalState.dart';
 
 late Size mq;
 void main() async {
@@ -18,9 +15,9 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await Supabase.initialize(
-    url: 'https://pxyrpotnfzpgnuzvssfp.supabase.co',
+    url: 'https://clmutghkfiagjikzhjlk.supabase.co',
     anonKey:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB4eXJwb3RuZnpwZ251enZzc2ZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk0NDY3MDMsImV4cCI6MjAyNTAyMjcwM30.j93m9Xsl1HBb9UPJ0pVhgXR7BT8N8a63Qg4XOSa78_w',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNsbXV0Z2hrZmlhZ2ppa3poamxrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQ5NjQ5NDgsImV4cCI6MjAzMDU0MDk0OH0.9FLLQ-vsrQuRPjFOVkvuZsBPAPPsCmj-ukVAXpWY2sw',
   );
   runApp(
     MultiBlocProvider(

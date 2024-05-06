@@ -21,6 +21,11 @@ class _ViewAllVideoState extends State<ViewAllVideo> {
 
   @override
   void dispose() {
+    if (controllerVideos.isNotEmpty) {
+      for (var i = 0; i < controllerVideos.length; i++) {
+        controllerVideos[i].pause();
+      }
+    }
     super.dispose();
   }
 
@@ -51,10 +56,10 @@ class _ViewAllVideoState extends State<ViewAllVideo> {
         }
         controllerVideos[0].play();
 
-        return PreloadPageView.builder(
+        return PageView.builder(
           itemCount: countries.length,
           scrollDirection: Axis.vertical,
-          preloadPagesCount: 1,
+          // preloadPagesCount: 1,
           onPageChanged: (position) {
             if (position == 0) {
               controllerVideos[position].play();
@@ -63,7 +68,7 @@ class _ViewAllVideoState extends State<ViewAllVideo> {
             controllerVideos[position].play();
             controllerVideos[position - 1].pause();
           },
-          controller: PreloadPageController(initialPage: 0),
+          // controller: PreloadPageController(initialPage: 0),
           itemBuilder: (context, index) {
             return Video(
               linkVideo: controllerVideos[index],
