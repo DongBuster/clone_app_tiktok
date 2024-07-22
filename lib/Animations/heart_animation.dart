@@ -39,8 +39,8 @@ class _HeartAnimationState extends State<HeartAnimation>
   Widget build(BuildContext context) {
     return widget.isFavorite
         ? Positioned(
-            top: widget.top,
-            left: widget.left,
+            top: widget.top - 20,
+            left: widget.left - 20,
             child: Stack(
               children: [
                 TiltOnTapWidget(

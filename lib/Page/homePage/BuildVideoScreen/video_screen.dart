@@ -40,7 +40,8 @@ class _VideoState extends State<Video> {
   // get position when ontap screen
   Offset? _tapPosition;
   void _getTapPosition(TapDownDetails details) async {
-    final tapPosition = details.globalPosition;
+    Offset tapPosition = details.globalPosition;
+
     setState(() {
       _tapPosition = tapPosition;
     });

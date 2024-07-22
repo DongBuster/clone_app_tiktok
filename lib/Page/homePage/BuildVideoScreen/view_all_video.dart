@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:preload_page_view/preload_page_view.dart';
 import 'package:video_player/video_player.dart';
 import '../../../common/loading_indicator.dart';
 import '../../../main.dart';
